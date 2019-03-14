@@ -1,0 +1,61 @@
+{
+	"name": "fit-textarea",
+	"description": "Automatically expand a <textarea> to fit its content, in a few bytes",
+	"version": "0.0.1",
+	"repository": "bfred-it/fit-textarea",
+	"license": "MIT",
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"text area",
+		"resize",
+		"fit to content",
+		"scale",
+		"height",
+		"autoresize",
+		"autosize",
+		"expand",
+		"automatic",
+		"stretch",
+		"input",
+		"event",
+		"avoid scrollbar",
+		"keypress",
+		"vertical",
+		"increase",
+		"vanilla",
+		"follow"
+	],
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^0.2.1",
+		"@typescript-eslint/eslint-plugin": "^1.4.2",
+		"eslint-config-xo-typescript": "^0.8.0",
+		"typescript": "^3.3.3333",
+		"xo": "*"
+	},
+	"scripts": {
+		"test": "tsc && xo !index.js",
+		"prepare": "tsc",
+		"build": "tsc",
+		"watch": "tsc --watch"
+	},
+	"xo": {
+		"extends": "xo-typescript",
+		"extensions": [
+			"ts"
+		],
+		"envs": [
+			"browser"
+		],
+		"rules": {
+			"prefer-rest-params": 0,
+			"valid-jsdoc": 0,
+			"max-params": 0,
+			"@typescript-eslint/no-var-requires": 0,
+			"@typescript-eslint/no-require-imports": 0,
+			"@typescript-eslint/promise-function-async": 0
+		}
+	}
+}
