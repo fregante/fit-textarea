@@ -20,6 +20,10 @@ const fitTextarea = require('fit-textarea');
 import fitTextarea from 'fit-textarea';
 ```
 
+```html
+<textarea rows="3">Use the rows attribute to set its minimum height</textarea>
+```
+
 ## Usage
 
 ### Once, one element
