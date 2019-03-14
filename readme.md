@@ -60,4 +60,5 @@ fitTextarea.watch('textarea');
 # Related
 
 - [indent-textarea](https://github.com/bfred-it/indent-textarea) - Add editor-like tab-to-indent functionality to <textarea>, in a few bytes.
+- [delegate-it](https://github.com/bfred-it/delegate-it) - DOM event delegation, in <1KB. Can be used to attach one `fit-textarea` to many elements.
 - [Refined GitHub](https://github.com/sindresorhus/refined-github) - Uses this module.
