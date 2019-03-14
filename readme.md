@@ -56,3 +56,8 @@ The selector is run once, so it's equivalent to the example above.
 ```js
 fitTextarea.watch('textarea');
 ```
+
+# Related
+
+- [indent-textarea](https://github.com/bfred-it/indent-textarea) - Add editor-like tab-to-indent functionality to <textarea>, in a few bytes.
+- [Refined GitHub](https://github.com/sindresorhus/refined-github) - Uses this module.
