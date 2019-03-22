@@ -1,10 +1,10 @@
 function fitTextarea(element: HTMLTextAreaElement): void {
 	element.style.height = 'auto';
-	const style = getComputedStyle(element) as CSSStyleDeclaration;
-	element.style.height = String(element.scrollHeight + parseFloat(style.borderTopWidth as string) + parseFloat(style.borderBottomWidth as string)) + 'px';
+	const style = getComputedStyle(element);
+	element.style.height = String(element.scrollHeight + parseFloat(style.borderTopWidth!) + parseFloat(style.borderBottomWidth!)) + 'px';
 }
 
-function listener(event: Event) {
+function listener(event: Event): void {
 	fitTextarea(event.target as HTMLTextAreaElement);
 }
 
