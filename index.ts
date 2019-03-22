@@ -4,6 +4,10 @@ function fitTextarea(element: HTMLTextAreaElement): void {
 	element.style.height = String(element.scrollHeight + parseFloat(style.borderTopWidth as string) + parseFloat(style.borderBottomWidth as string)) + 'px';
 }
 
+function listener(event: Event) {
+	fitTextarea(event.target as HTMLTextAreaElement);
+}
+
 function watch(elements: string | HTMLTextAreaElement | HTMLTextAreaElement[] | NodeListOf<HTMLTextAreaElement>): void {
 	if (typeof elements === 'string') {
 		elements = document.querySelectorAll(elements);
@@ -12,7 +16,7 @@ function watch(elements: string | HTMLTextAreaElement | HTMLTextAreaElement[] | 
 	}
 
 	for (const element of elements) {
-		element.addEventListener('input', (event: Event) => fitTextarea(event.target as HTMLTextAreaElement));
+		element.addEventListener('input', listener);
 		fitTextarea(element);
 	}
 }
