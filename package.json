@@ -1,7 +1,7 @@
 {
 	"name": "fit-textarea",
 	"description": "Automatically expand a <textarea> to fit its content, in a few bytes",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"repository": "bfred-it/fit-textarea",
 	"license": "MIT",
 	"files": [
