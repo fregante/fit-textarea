@@ -39,7 +39,7 @@
 		 "tape-run": "^5.0.0"
 	},
 	"scripts": {
-		"test": "tsc && browserify test.js",
+		"test": "tsc && browserify test.js | tape-run",
 		"prepare": "tsc",
 		"build": "tsc",
 		"watch": "tsc --watch"
