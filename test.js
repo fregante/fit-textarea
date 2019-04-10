@@ -1,5 +1,5 @@
-import test from 'tape';
-import fitTextarea from '.';
+const test = require('tape');
+const fitTextarea = require('.');
 
 document.body.innerHTML = `
 	<textarea>
