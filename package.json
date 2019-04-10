@@ -33,10 +33,12 @@
 		"@typescript-eslint/eslint-plugin": "^1.4.2",
 		"eslint-config-xo-typescript": "^0.9.0",
 		"typescript": "^3.3.3333",
-		"xo": "*"
+		"xo": "*",
+		"browserify": "^16.2.2",
+    "tape-run": "^4.0.0"
 	},
 	"scripts": {
-		"test": "tsc && xo",
+		"test": "tsc && xo && browserify test.js | tape-run",
 		"prepare": "tsc",
 		"build": "tsc",
 		"watch": "tsc --watch"
