@@ -7,11 +7,11 @@ document.body.innerHTML = `
 `;
 
 const textarea = document.querySelector('textarea');
-const getHeight = el = el.getBoundingClientRect().height;
+const getHeight = el => el.getBoundingClientRect().height;
 
 test('fit content once', t => {
 	const initialHeight = getHeight(textarea);
 	fitTextarea(textarea);
 	t.true(initialHeight < getHeight(textarea));
-	t.true(elem.clientHeight >= elem.scrollHeight);
+	t.true(textarea.clientHeight >= textarea.scrollHeight);
 });
