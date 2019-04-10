@@ -11,7 +11,8 @@ return field;
 const textarea = document.querySelector('textarea');
 const getHeight = el => el.getBoundingClientRect().height;
 
-test('fit content once', t => {
+test('fit content once (increase)', t => {
+	t.plan(2);
 	const textarea = getField();
 	const initialHeight = getHeight(textarea);
 	fitTextarea(textarea);
@@ -19,7 +20,17 @@ test('fit content once', t => {
 	t.true(textarea.clientHeight >= textarea.scrollHeight);
 });
 
-test('fit content once + undo when empty', t => {
+test('fit content once (keep minimum height)', t => {{
+	t.plan(1);
+	const textarea = getField(1);
+	textarea.rows = 20;
+	const initialHeight = getHeight(textarea);
+	fitTextarea(textarea);
+	t.equal(initialHeight, getHeight(textarea));
+});
+
+test('fit content once + undo when empty', t => {{
+	t.plan(1);
 	const textarea = getField();
 	const initialHeight = getHeight(textarea);
 	fitTextarea(textarea);
