@@ -54,9 +54,9 @@
 		"envs": [
 			"browser"
 		],
-		"overrides": {
+		"overrides": [{
 			"files": "**/*.ts",
 			"extends": "xo-typescript"
-		}
+		}]
 	}
 }
