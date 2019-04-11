@@ -8,7 +8,6 @@ const getField = (repeat = 50) => {
 	return field;
 };
 
-const textarea = document.querySelector('textarea');
 const getHeight = el => el.getBoundingClientRect().height;
 
 test('fit content once (increase)', t => {
@@ -27,12 +26,11 @@ test.skip('fit content once (keep minimum height)', t => {
 	textarea.style.minHeight = '200px';
 	fitTextarea(textarea);
 	t.equal(getComputedStyle(textarea).height, '200px');
-});zA
+});
 
 test('fit content once + undo when empty', t => {
 	t.plan(1);
 	const textarea = getField();
-	const initialHeight = getHeight(textarea);
 	fitTextarea(textarea);
 	const fitHeight = getHeight(textarea);
 	textarea.value = '';
