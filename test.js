@@ -26,7 +26,7 @@ test('fit content once (keep minimum height)', t => {
 	const textarea = getField(1);
 	textarea.style.minHeight = '200px';
 	fitTextarea(textarea);
-	t.equal(getHeight(textarea), 200);
+	t.equal(getComputedStyle(textarea).height, '200px');
 });zA
 
 test('fit content once + undo when empty', t => {
