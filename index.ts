@@ -23,6 +23,8 @@ function fitTextarea(textarea: HTMLTextAreaElement): void {
 
 function listener(event: Event): void {
 	fitTextarea(event.target as HTMLTextAreaElement);
+	
+	
 }
 
 function watchAndFit(elements: string | HTMLTextAreaElement | HTMLTextAreaElement[] | NodeListOf<HTMLTextAreaElement>): void {
