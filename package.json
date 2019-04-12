@@ -40,9 +40,10 @@
 		"xo": "*"
 	},
 	"scripts": {
-		"test": "run-s --silent prepare test:*",
+		"test": "npm-run-all --silent prepare --parallel test:*",
 		"test:lint": "xo",
-		"test:tape": "browserify test.js | tape-run",
+		"test:blink": "browserify test.js | tape-run",
+		"test:gecko": "browserify test.js | tape-run --browser firefox",
 		"prepare": "tsc",
 		"build": "tsc",
 		"watch": "tsc --watch"
@@ -54,9 +55,11 @@
 		"envs": [
 			"browser"
 		],
-		"overrides": [{
-			"files": "**/*.ts",
-			"extends": "xo-typescript"
-		}]
+		"overrides": [
+			{
+				"files": "**/*.ts",
+				"extends": "xo-typescript"
+			}
+		]
 	}
 }
