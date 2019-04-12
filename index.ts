@@ -40,5 +40,4 @@ function watchAndFit(elements: string | HTMLTextAreaElement | HTMLTextAreaElemen
 
 fitTextarea.watch = watchAndFit;
 
-module.exports = fitTextarea;
-export default fitTextarea;
+export = fitTextarea;
