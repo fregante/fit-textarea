@@ -34,6 +34,10 @@ function watchAndFit(elements: string | HTMLTextAreaElement | HTMLTextAreaElemen
 
 	for (const element of elements) {
 		element.addEventListener('input', listener);
+		if (element.form) {
+			element.form.addEventListener('reset', listener);
+		}
+
 		fitTextarea(element);
 	}
 }
