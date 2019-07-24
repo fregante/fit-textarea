@@ -1,8 +1,8 @@
 # fit-textarea [![(size)][badge-gzip]](#no-link) [![(status)][badge-travis]][link-travis]
 
   [badge-gzip]: https://img.shields.io/bundlephobia/minzip/fit-textarea.svg?label=gzipped
-  [badge-travis]: https://api.travis-ci.com/bfred-it/fit-textarea.svg
-  [link-travis]: https://travis-ci.com/bfred-it/fit-textarea
+  [badge-travis]: https://api.travis-ci.com/fregante/fit-textarea.svg
+  [link-travis]: https://travis-ci.com/fregante/fit-textarea
 
 <img align="right" width="361" src="https://user-images.githubusercontent.com/1402241/54336211-66fd5e00-4666-11e9-9c5e-111fccab004d.gif">
 
@@ -63,6 +63,6 @@ fitTextarea.watch('textarea');
 
 # Related
 
-- [indent-textarea](https://github.com/bfred-it/indent-textarea) - Add editor-like tab-to-indent functionality to <textarea>, in a few bytes.
-- [delegate-it](https://github.com/bfred-it/delegate-it) - DOM event delegation, in <1KB. Can be used to attach one `fit-textarea` to many elements.
+- [indent-textarea](https://github.com/fregante/indent-textarea) - Add editor-like tab-to-indent functionality to <textarea>, in a few bytes.
+- [delegate-it](https://github.com/fregante/delegate-it) - DOM event delegation, in <1KB. Can be used to attach one `fit-textarea` to many elements.
 - [Refined GitHub](https://github.com/sindresorhus/refined-github) - Uses this module.

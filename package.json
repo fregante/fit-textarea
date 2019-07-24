@@ -1,33 +1,56 @@
 {
 	"name": "fit-textarea",
-	"description": "Automatically expand a <textarea> to fit its content, in a few bytes",
 	"version": "1.1.0",
-	"repository": "bfred-it/fit-textarea",
+	"description": "Automatically expand a <textarea> to fit its content, in a few bytes",
+	"keywords": [
+		"automatic",
+		"autoresize",
+		"autosize",
+		"avoid scrollbar",
+		"event",
+		"expand",
+		"fit to content",
+		"follow",
+		"height",
+		"increase",
+		"input",
+		"keypress",
+		"resize",
+		"scale",
+		"stretch",
+		"text area",
+		"vanilla",
+		"vertical"
+	],
+	"repository": "fregante/fit-textarea",
 	"license": "MIT",
 	"files": [
 		"index.js",
 		"index.d.ts"
 	],
-	"keywords": [
-		"text area",
-		"resize",
-		"fit to content",
-		"scale",
-		"height",
-		"autoresize",
-		"autosize",
-		"expand",
-		"automatic",
-		"stretch",
-		"input",
-		"event",
-		"avoid scrollbar",
-		"keypress",
-		"vertical",
-		"increase",
-		"vanilla",
-		"follow"
-	],
+	"scripts": {
+		"build": "tsc",
+		"prepare": "tsc",
+		"test": "npm-run-all --silent prepare --parallel test:*",
+		"test:blink": "browserify test.js | tape-run",
+		"test:gecko": "browserify test.js | tape-run --browser firefox",
+		"test:lint": "xo",
+		"watch": "tsc --watch"
+	},
+	"xo": {
+		"envs": [
+			"browser"
+		],
+		"extensions": [
+			"ts"
+		],
+		"overrides": [
+			{
+				"files": "**/*.ts",
+				"extends": "xo-typescript"
+			}
+		]
+	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^0.3.0",
 		"@typescript-eslint/eslint-plugin": "^1.4.2",
@@ -38,28 +61,5 @@
 		"tape-run": "^5.0.0",
 		"typescript": "^3.3.3333",
 		"xo": "*"
-	},
-	"scripts": {
-		"test": "npm-run-all --silent prepare --parallel test:*",
-		"test:lint": "xo",
-		"test:blink": "browserify test.js | tape-run",
-		"test:gecko": "browserify test.js | tape-run --browser firefox",
-		"prepare": "tsc",
-		"build": "tsc",
-		"watch": "tsc --watch"
-	},
-	"xo": {
-		"extensions": [
-			"ts"
-		],
-		"envs": [
-			"browser"
-		],
-		"overrides": [
-			{
-				"files": "**/*.ts",
-				"extends": "xo-typescript"
-			}
-		]
 	}
 }
