@@ -1,6 +1,6 @@
 {
 	"name": "fit-textarea",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Automatically expand a <textarea> to fit its content, in a few bytes",
 	"keywords": [
 		"automatic",
