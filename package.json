@@ -33,7 +33,7 @@
 		"prepare": "tsc",
 		"test": "npm-run-all --silent prepare --parallel test:*",
 		"test:blink": "browserify test.js | tape-run",
-		"test:gecko": "browserify test.js | tape-run --browser firefox",
+		"test:gecko": "if [ $CI ]; then browserify -p esmify test.js | tape-run --browser firefox; fi",
 		"test:lint": "xo",
 		"test:build": "tsc",
 		"watch": "tsc --watch"
@@ -48,7 +48,10 @@
 		"overrides": [
 			{
 				"files": "**/*.ts",
-				"extends": "xo-typescript"
+				"extends": "xo-typescript",
+				"rules": {
+					"@typescript-eslint/no-unnecessary-type-assertion": "off"
+				}
 			}
 		]
 	},
