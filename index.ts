@@ -8,10 +8,10 @@ function fitTextarea(textarea: HTMLTextAreaElement): void {
 	}
 
 	// Reset the height to get the smallest possible height
-	textarea.style.height = 'auto';
+	textarea.style.minHeight = 'auto';
 	const style = getComputedStyle(textarea);
 
-	textarea.style.height = String(textarea.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
+	textarea.style.minHeight = String(textarea.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
 
 	// Restore any scrollTop that was lost
 	for (const [element, position] of positions) {
