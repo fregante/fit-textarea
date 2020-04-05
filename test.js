@@ -8,7 +8,7 @@ const getField = (repeat = 50) => {
 	return field;
 };
 
-const getHeight = el => el.getBoundingClientRect().height;
+const getHeight = element => element.getBoundingClientRect().height;
 
 test('fit content once (increase)', t => {
 	t.plan(2);
