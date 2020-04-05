@@ -31,7 +31,7 @@ test('fit content once (keep minimum height)', t => {
 test('fit content once + undo when empty', t => {
 	t.plan(1);
 	const textarea = getField();
-	const initialHeight = getHeight(textarea);
+	// TODO: const initialHeight = getHeight(textarea);
 	fitTextarea(textarea);
 	const fitHeight = getHeight(textarea);
 	textarea.value = '';
