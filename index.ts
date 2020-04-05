@@ -7,16 +7,25 @@ function fitTextarea(textarea: HTMLTextAreaElement): void {
 		positions.set(element, element.scrollTop);
 	}
 
-	// Reset the height to get the smallest possible height
-	textarea.style.minHeight = 'auto';
 	const style = getComputedStyle(textarea);
+	const needsReset = parseInt(style.minHeight, 10) > 0;
+	if (needsReset) {
+		// Reset the height to get the smallest possible height
+		textarea.style.minHeight = '';
+	}
 
-	textarea.style.minHeight = String(textarea.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
+	const newMinHeight = textarea.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+	const needsUpdate = parseInt(style.height, 10) < newMinHeight;
+	if (needsUpdate) {
+		textarea.style.minHeight = `${newMinHeight}px`;
+	}
 
-	// Restore any scrollTop that was lost
-	for (const [element, position] of positions) {
-		if (position && element.scrollTop !== position) {
-			element.scrollTop = position;
+	if (!needsReset) {
+		// Restore any scrollTop that was lost
+		for (const [element, position] of positions) {
+			if (position && element.scrollTop !== position) {
+				element.scrollTop = position;
+			}
 		}
 	}
 }
