@@ -1,5 +1,5 @@
-const test = require('tape');
-const fitTextarea = require('.');
+import test from 'tape';
+import fitTextarea from '.';
 
 const getField = (repeat = 50) => {
 	const field = document.createElement('textarea');

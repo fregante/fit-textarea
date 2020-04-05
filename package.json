@@ -24,6 +24,9 @@
 	],
 	"repository": "fregante/fit-textarea",
 	"license": "MIT",
+	"type": "module",
+	"main": "index.js",
+	"module": "index.js",
 	"files": [
 		"index.js",
 		"index.d.ts"

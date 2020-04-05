@@ -16,10 +16,7 @@ npm install fit-textarea
 ## Setup
 
 ```js
-const fitTextarea = require('fit-textarea');
-```
-
-```js
+// This module is only offered as a ES Module
 import fitTextarea from 'fit-textarea';
 ```
 
