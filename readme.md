@@ -3,9 +3,11 @@
   [badge-gzip]: https://img.shields.io/bundlephobia/minzip/fit-textarea.svg?label=gzipped
   [link-npm]: https://www.npmjs.com/package/fit-textarea
 
-<img align="right" width="361" src="https://user-images.githubusercontent.com/1402241/54336211-66fd5e00-4666-11e9-9c5e-111fccab004d.gif">
+<a href="https://fregante.github.io/fit-textarea/"><img align="right" width="361" src="https://user-images.githubusercontent.com/1402241/54336211-66fd5e00-4666-11e9-9c5e-111fccab004d.gif"></a>
 
 > Automatically expand a `<textarea>` to fit its content, in a few bytes
+
+Try the [demo](https://fregante.github.io/fit-textarea/)!
 
 ## Install
 

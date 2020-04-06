@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>`fit-textarea` npm module testing ground</title>
+<style>
+	body {
+		font-family: sans-serif;
+		max-width: 500px;
+		color: #fff;
+		background: #4a8a00;
+		margin: auto;
+	}
+
+	body.failed {
+		background-color: gray;
+		color: silver;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	h1 {
+		font-weight: 400;
+	}
+
+	h2 {
+		font-weight: 100;
+	}
+
+	body:not(.loaded)::before {
+		content: 'loading';
+		position: fixed;
+		font-size: 10vmin;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background: #4a8a00;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	body.failed::before {
+		content: 'loading failed';
+		display: block;
+		font-size: 10vmin;
+		text-align: center;
+		padding: 30px;
+		color: white;
+		border-bottom: 1px solid;
+	}
+
+	textarea {
+		border: solid 2px #fff;
+		padding: 2px;
+		border-radius: 3px;
+		width: 100%;
+		font: inherit;
+		resize: none;
+		background: #ffffff77;
+	}
+</style>
+<h1><a href="https://github.com/fregante/fit-textarea">fit-textarea</a> test page</h1>
+<p>Type something in the fields and see them resize fit the content.</p>
+<h2>Plain textarea</h2>
+<textarea>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aut fugit esse tempora ut vitae enim possimus, recusandae illo dolorem non nesciunt consequuntur libero culpa qui molestiae laboriosam at sapiente.</textarea>
+
+<h2>Textarea with <code>rows="10"</code> attribute</h2>
+<p>The <code>rows</code> attribute can be used as a minimum height setting.</p>
+<textarea rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi laudantium nesciunt ipsum. Consequuntur, voluptatibus dolores? Id temporibus officia, deserunt quibusdam consequuntur omnis ducimus. Iste veritatis ratione fugiat libero ducimus tempore.</textarea>
+
+<script type="module">
+	import('./index.js')
+		.catch(() => import('https://unpkg.com/fit-textarea'))
+		.then(({default: fitTextarea}) => {
+			fitTextarea.watch('textarea');
+		}, () => {
+			document.body.classList.add('failed')
+		}).then(() => {
+			document.body.classList.add('loaded')
+		});
+</script>
