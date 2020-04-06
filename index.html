@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://unpkg.com/chota@0.7.2/dist/chota.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>`fit-textarea` npm module testing ground</title>
+<style>
+	* {
+		transition: none !important;
+	}
+
+	:root {
+		--grid-maxWidth: 500px;
+		--color-primary: #4a8a00;
+		padding-bottom: 3rem;
+
+	}
+
+	code,
+	kbd {
+		color: var(--color-darkGrey);
+	}
+
+	h1 {
+		background: #4a8a00;
+		padding: 1em;
+		margin-top: 0;
+		text-align: center;
+	}
+
+	h1 a {
+		color: white;
+	}
+
+	h2 {
+		margin-top: 4rem;
+	}
+
+	body:not(.loaded)::before {
+		content: 'loading';
+		display: block;
+		font-size: 3rem;
+		text-align: center;
+	}
+
+	body.failed::before {
+		content: 'loading failed';
+	}
+</style>
+<h1><a href="https://github.com/fregante/fit-textarea">fregante/fit-textarea</a></h1>
+<main class="container">
+	<pre><code>import textarea from '<a href="https://github.com/fregante/fit-textarea">fit-textarea</a>';
+fitTextarea.watch('textarea');</code></pre>
+	<p>Type something in the fields and see them resize fit the content.</p>
+	<h2><code>&lt;textarea&gt;</code></h2>
+	<textarea>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit aut fugit esse tempora ut vitae enim possimus, recusandae illo dolorem non nesciunt consequuntur libero culpa qui molestiae laboriosam at sapiente.</textarea>
+	<h2><code>&lt;textarea rows="10"&gt;</code></h2>
+	<p>The <code>rows</code> attribute can be used as a minimum height setting.</p>
+	<textarea rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi laudantium nesciunt ipsum. Consequuntur, voluptatibus dolores? Id temporibus officia, deserunt quibusdam consequuntur omnis ducimus. Iste veritatis ratione fugiat libero ducimus tempore.</textarea>
+
+	<script type="module">
+		import('./index.js')
+			.catch(() => import('https://unpkg.com/fit-textarea@latest/index.js'))
+			.then(({default: fitTextarea}) => {
+				fitTextarea.watch('textarea');
+			}, () => {
+				document.body.classList.add('failed')
+			}).then(() => {
+				document.body.classList.add('loaded')
+			});
+	</script>
+</main>
