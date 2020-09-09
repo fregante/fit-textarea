@@ -33,7 +33,7 @@
 	],
 	"scripts": {
 		"build": "tsc",
-		"prepublishOnly": "tsc --sourceMap false",
+		"prepack": "tsc --sourceMap false",
 		"test": "run-s build test:*",
 		"test:blink": "browserify -p esmify test.js | tape-run --browser chrome",
 		"test:gecko": "browserify -p esmify test.js | tape-run --browser firefox",
