@@ -1,24 +1,33 @@
+const mirrors = new WeakMap();
+
+function getMirror(source: HTMLTextAreaElement): HTMLTextAreaElement {
+        if (mirrors.has(source)) {
+                return source;
+        }
+
+        const mirror = source.cloneNode();
+        mirror.style = getComputedStyle(source);
+        mirror.style.height = '1em';
+        mirror.style.position = 'fixed';
+        mirror.style.bottom = '200%;
+        mirror.style.right = '200%;
+        source.addEventListener('focus', () => {
+                document.body.append(mirror);
+        });
+        source.addEventListener('blur', () => {
+                mirror.remove();
+        });
+        mirrors.set(source, mirror);
+        return mirror;
+}
+
 function fitTextarea(textarea: HTMLTextAreaElement): void {
-	// Resetting the height will change the page height and might change the scroll
-	const positions: Map<Element, number> = new Map();
-	let element: Element = textarea;
-	while (element?.parentElement) {
-		element = element.parentElement;
-		positions.set(element, element.scrollTop);
-	}
-
-	// Reset the height to get the smallest possible height
-	textarea.style.height = 'auto';
-	const style = getComputedStyle(textarea);
-
-	textarea.style.height = String(textarea.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
-
-	// Restore any scrollTop that was lost
-	for (const [element, position] of positions) {
-		if (position && element.scrollTop !== position) {
-			element.scrollTop = position;
-		}
-	}
+        const mirror = getMirror(textarea);
+        mirror.value = textarea.value;
+	const style = getComputedStyle(mirror);
+        if (mirror.scrollHeight) {
+                textarea.style.height = String(mirror.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
+        }
 }
 
 function listener(event: Event): void {
