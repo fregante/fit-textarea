@@ -61,7 +61,9 @@ fitTextarea.watch('textarea');</code></pre>
 		import('./index.js')
 			.catch(() => import('https://unpkg.com/fit-textarea@latest/index.js'))
 			.then(({default: fitTextarea}) => {
-				fitTextarea.watch('textarea');
+				requestAnimationFrame(
+					() => fitTextarea.watch('textarea')
+				)
 			}, () => {
 				document.body.classList.add('failed')
 			}).then(() => {
