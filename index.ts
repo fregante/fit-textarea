@@ -35,7 +35,18 @@ function getFieldData(source: HTMLTextAreaElement): Data {
 			parseFloat(sourceStyle.borderBottomWidth)
 	};
 
+	// Cache it and automatically de-cache it when something relevant happens
 	mirrors.set(source, data);
+	const regenerateMirror = () => {
+		mirrors.delete(source);
+	};
+
+	const settings = {
+		once: true,
+		passive: true
+	} as const;
+	window.addEventListener('resize', regenerateMirror, settings);
+	window.addEventListener('load', regenerateMirror, settings);
 	return data;
 }
 
