@@ -61,7 +61,10 @@ fitTextarea.watch('textarea');</code></pre>
 		import('./index.js')
 			.catch(() => import('https://unpkg.com/fit-textarea@latest/index.js'))
 			.then(({default: fitTextarea}) => {
-				fitTextarea.watch('textarea');
+				setTimeout(() => {
+					fitTextarea.watch('textarea');
+					console.log(1);
+				}, 100)
 			}, () => {
 				document.body.classList.add('failed')
 			}).then(() => {

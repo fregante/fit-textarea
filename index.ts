@@ -1,33 +1,58 @@
 const mirrors = new WeakMap();
 
-function getMirror(source: HTMLTextAreaElement): HTMLTextAreaElement {
-        if (mirrors.has(source)) {
-                return source;
-        }
+const mirrorDefaults = {
+	height: '',
+	position: 'fixed',
+	top: '-500px',
+	left: '-500px'
+} as const;
 
-        const mirror = source.cloneNode();
-        mirror.style = getComputedStyle(source);
-        mirror.style.height = '1em';
-        mirror.style.position = 'fixed';
-        mirror.style.bottom = '200%;
-        mirror.style.right = '200%;
-        source.addEventListener('focus', () => {
-                document.body.append(mirror);
-        });
-        source.addEventListener('blur', () => {
-                mirror.remove();
-        });
-        mirrors.set(source, mirror);
-        return mirror;
+interface Data {
+	mirror: HTMLTextAreaElement;
+	additionalHeight: number;
+}
+
+function getFieldData(source: HTMLTextAreaElement): Data {
+	const cached = mirrors.get(source);
+	if (cached) {
+		return cached;
+	}
+
+	const sourceStyle = getComputedStyle(source);
+
+	const mirror = source.cloneNode() as HTMLTextAreaElement;
+
+	Object.assign(
+		mirror.style,
+		sourceStyle,
+		mirrorDefaults
+	);
+
+	const data = {
+		mirror,
+		additionalHeight:
+			parseFloat(sourceStyle.borderTopWidth) +
+			parseFloat(sourceStyle.borderBottomWidth)
+	};
+
+	mirrors.set(source, data);
+	return data;
 }
 
 function fitTextarea(textarea: HTMLTextAreaElement): void {
-        const mirror = getMirror(textarea);
-        mirror.value = textarea.value;
-	const style = getComputedStyle(mirror);
-        if (mirror.scrollHeight) {
-                textarea.style.height = String(mirror.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
-        }
+	const {mirror, additionalHeight} = getFieldData(textarea);
+
+	// Match content and reset height
+	mirror.value = textarea.value;
+
+	document.body.append(mirror);
+
+	const desiredHeight = mirror.scrollHeight + additionalHeight + 'px';
+	if (textarea.style.height !== desiredHeight) {
+		textarea.style.height = desiredHeight;
+	}
+
+	mirror.remove();
 }
 
 function listener(event: Event): void {
@@ -54,3 +79,4 @@ function watchAndFit(elements: string | HTMLTextAreaElement | HTMLTextAreaElemen
 fitTextarea.watch = watchAndFit;
 
 export default fitTextarea;
+
