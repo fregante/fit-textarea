@@ -1,24 +1,69 @@
+const mirrors = new WeakMap();
+
+const mirrorDefaults = {
+	height: '',
+	position: 'fixed',
+	top: '-500px',
+	left: '-500px'
+} as const;
+
+interface Data {
+	mirror: HTMLTextAreaElement;
+	additionalHeight: number;
+}
+
+function getFieldData(source: HTMLTextAreaElement): Data {
+	const cached = mirrors.get(source);
+	if (cached) {
+		return cached;
+	}
+
+	const sourceStyle = getComputedStyle(source);
+
+	const mirror = source.cloneNode() as HTMLTextAreaElement;
+
+	for (const property of sourceStyle) {
+		mirror.style.setProperty(property, sourceStyle.getPropertyValue(property));
+	}
+
+	Object.assign(mirror.style, mirrorDefaults);
+
+	const data = {
+		mirror,
+		additionalHeight:
+			parseFloat(sourceStyle.borderTopWidth) +
+			parseFloat(sourceStyle.borderBottomWidth)
+	};
+
+	// Cache it and automatically de-cache it when something relevant happens
+	mirrors.set(source, data);
+	const regenerateMirror = () => {
+		mirrors.delete(source);
+	};
+
+	const settings = {
+		once: true,
+		passive: true
+	} as const;
+	window.addEventListener('resize', regenerateMirror, settings);
+	window.addEventListener('load', regenerateMirror, settings);
+	return data;
+}
+
 function fitTextarea(textarea: HTMLTextAreaElement): void {
-	// Resetting the height will change the page height and might change the scroll
-	const positions: Map<Element, number> = new Map();
-	let element: Element = textarea;
-	while (element?.parentElement) {
-		element = element.parentElement;
-		positions.set(element, element.scrollTop);
+	const {mirror, additionalHeight} = getFieldData(textarea);
+
+	// Match content and reset height
+	mirror.value = textarea.value;
+
+	document.body.append(mirror);
+
+	const desiredHeight = String(mirror.scrollHeight + additionalHeight) + 'px';
+	if (textarea.style.minHeight !== desiredHeight) {
+		textarea.style.minHeight = desiredHeight;
 	}
 
-	// Reset the height to get the smallest possible height
-	textarea.style.height = 'auto';
-	const style = getComputedStyle(textarea);
-
-	textarea.style.height = String(textarea.scrollHeight + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)) + 'px';
-
-	// Restore any scrollTop that was lost
-	for (const [element, position] of positions) {
-		if (position && element.scrollTop !== position) {
-			element.scrollTop = position;
-		}
-	}
+	mirror.remove();
 }
 
 function listener(event: Event): void {
@@ -45,3 +90,4 @@ function watchAndFit(elements: string | HTMLTextAreaElement | HTMLTextAreaElemen
 fitTextarea.watch = watchAndFit;
 
 export default fitTextarea;
+

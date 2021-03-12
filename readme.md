@@ -9,6 +9,13 @@
 
 Try the [demo](https://fregante.github.io/fit-textarea/)!
 
+Features:
+
+- Small
+- No layout thrashing (no DOM changes unless necessary)
+- You can set a minimum height (via `rows` attribute or `height` CSS property)
+- If the field is resizable, the new size will be treated as minimum height
+
 ## Install
 
 ```
