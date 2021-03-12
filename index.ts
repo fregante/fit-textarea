@@ -22,11 +22,11 @@ function getFieldData(source: HTMLTextAreaElement): Data {
 
 	const mirror = source.cloneNode() as HTMLTextAreaElement;
 
-	Object.assign(
-		mirror.style,
-		sourceStyle,
-		mirrorDefaults
-	);
+	for (const property of sourceStyle) {
+		mirror.style.setProperty(property, sourceStyle.getPropertyValue(property));
+	}
+
+	Object.assign(mirror.style, mirrorDefaults);
 
 	const data = {
 		mirror,
@@ -47,7 +47,7 @@ function fitTextarea(textarea: HTMLTextAreaElement): void {
 
 	document.body.append(mirror);
 
-	const desiredHeight = mirror.scrollHeight + additionalHeight + 'px';
+	const desiredHeight = String(mirror.scrollHeight + additionalHeight) + 'px';
 	if (textarea.style.height !== desiredHeight) {
 		textarea.style.height = desiredHeight;
 	}
