@@ -59,8 +59,8 @@ function fitTextarea(textarea: HTMLTextAreaElement): void {
 	document.body.append(mirror);
 
 	const desiredHeight = String(mirror.scrollHeight + additionalHeight) + 'px';
-	if (textarea.style.height !== desiredHeight) {
-		textarea.style.height = desiredHeight;
+	if (textarea.style.minHeight !== desiredHeight) {
+		textarea.style.minHeight = desiredHeight;
 	}
 
 	mirror.remove();

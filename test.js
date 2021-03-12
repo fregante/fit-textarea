@@ -21,11 +21,10 @@ test('fit content once (increase)', t => {
 
 test.skip('fit content once (keep minimum height)', t => {
 	t.plan(1);
-	// TODO: I don't know if this is possible, but the rows attribute and min-height should be followed
 	const textarea = getField(1);
-	textarea.style.minHeight = '200px';
+	textarea.rows = 10;
 	fitTextarea(textarea);
-	t.equal(getComputedStyle(textarea).height, '200px');
+	t.equal(getHeight(textarea) > 100);
 });
 
 test('fit content once + undo when empty', t => {
@@ -36,5 +35,4 @@ test('fit content once + undo when empty', t => {
 	textarea.value = '';
 	fitTextarea(textarea);
 	t.true(fitHeight > getHeight(textarea));
-	// TODO: t.equal(getHeight(textarea), initialHeight);
 });
